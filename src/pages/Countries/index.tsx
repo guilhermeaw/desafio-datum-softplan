@@ -1,15 +1,20 @@
 import React from 'react';
 import Header from '../components/Header';
 import CountriesList from '../components/CountriesList';
+import CountryCard, { Country } from '../components/CountryCard';
 
-import { 
-  Container, 
-  CountriesContainer, 
-  CountryCard,
-  FlagContainer,
-  InfoContainer,
-  InfoWrapper
-} from './styles';
+import { Container, CountriesContainer } from './styles';
+
+const country: Country =
+  {
+    name: 'Brasil',
+    area: 8516000,
+    population: 209000000,
+    capital: 'Brasília',
+    topLevelDomains: [
+      { name: '.br' }
+    ]
+  };
 
 function Countries() {
   return (
@@ -18,216 +23,7 @@ function Countries() {
 
       <CountriesContainer>
         <CountriesList>
-          <CountryCard>
-            <FlagContainer />
-
-            <InfoContainer>
-              <h1>Brasil</h1>
-              <InfoWrapper>
-                <div>
-                  <strong>Capital</strong>
-                  <span>Brasília</span>
-                </div>
-                
-                <div>
-                  <strong>Área</strong>
-                  <span>8.516.000 km²</span>
-                </div>
-              </InfoWrapper>
-
-              <InfoWrapper>
-                <div>
-                  <strong>População</strong>
-                  <span>209000000</span>
-                </div>
-
-                <div>
-                  <strong>Top-level-domain</strong>
-                  <span>n/d</span>
-                </div>
-              </InfoWrapper>
-            </InfoContainer>
-          </CountryCard>
-          <CountryCard>
-            <FlagContainer />
-
-            <InfoContainer>
-              <h1>Brasil</h1>
-              <InfoWrapper>
-                <div>
-                  <strong>Capital</strong>
-                  <span>Brasília</span>
-                </div>
-                
-                <div>
-                  <strong>Área</strong>
-                  <span>8.516.000 km²</span>
-                </div>
-              </InfoWrapper>
-
-              <InfoWrapper>
-                <div>
-                  <strong>População</strong>
-                  <span>209000000</span>
-                </div>
-
-                <div>
-                  <strong>Top-level-domain</strong>
-                  <span>n/d</span>
-                </div>
-              </InfoWrapper>
-            </InfoContainer>
-          </CountryCard>
-          <CountryCard>
-            <FlagContainer />
-
-            <InfoContainer>
-              <h1>Brasil</h1>
-              <InfoWrapper>
-                <div>
-                  <strong>Capital</strong>
-                  <span>Brasília</span>
-                </div>
-                
-                <div>
-                  <strong>Área</strong>
-                  <span>8.516.000 km²</span>
-                </div>
-              </InfoWrapper>
-
-              <InfoWrapper>
-                <div>
-                  <strong>População</strong>
-                  <span>209000000</span>
-                </div>
-
-                <div>
-                  <strong>Top-level-domain</strong>
-                  <span>n/d</span>
-                </div>
-              </InfoWrapper>
-            </InfoContainer>
-          </CountryCard>
-          <CountryCard>
-            <FlagContainer />
-
-            <InfoContainer>
-              <h1>Brasil</h1>
-              <InfoWrapper>
-                <div>
-                  <strong>Capital</strong>
-                  <span>Brasília</span>
-                </div>
-                
-                <div>
-                  <strong>Área</strong>
-                  <span>8.516.000 km²</span>
-                </div>
-              </InfoWrapper>
-
-              <InfoWrapper>
-                <div>
-                  <strong>População</strong>
-                  <span>209000000</span>
-                </div>
-
-                <div>
-                  <strong>Top-level-domain</strong>
-                  <span>n/d</span>
-                </div>
-              </InfoWrapper>
-            </InfoContainer>
-          </CountryCard>
-          <CountryCard>
-            <FlagContainer />
-
-            <InfoContainer>
-              <h1>Brasil</h1>
-              <InfoWrapper>
-                <div>
-                  <strong>Capital</strong>
-                  <span>Brasília</span>
-                </div>
-                
-                <div>
-                  <strong>Área</strong>
-                  <span>8.516.000 km²</span>
-                </div>
-              </InfoWrapper>
-
-              <InfoWrapper>
-                <div>
-                  <strong>População</strong>
-                  <span>209000000</span>
-                </div>
-
-                <div>
-                  <strong>Top-level-domain</strong>
-                  <span>n/d</span>
-                </div>
-              </InfoWrapper>
-            </InfoContainer>
-          </CountryCard>
-          <CountryCard>
-            <FlagContainer />
-
-            <InfoContainer>
-              <h1>Brasil</h1>
-              <InfoWrapper>
-                <div>
-                  <strong>Capital</strong>
-                  <span>Brasília</span>
-                </div>
-                
-                <div>
-                  <strong>Área</strong>
-                  <span>8.516.000 km²</span>
-                </div>
-              </InfoWrapper>
-
-              <InfoWrapper>
-                <div>
-                  <strong>População</strong>
-                  <span>209000000</span>
-                </div>
-
-                <div>
-                  <strong>Top-level-domain</strong>
-                  <span>n/d</span>
-                </div>
-              </InfoWrapper>
-            </InfoContainer>
-          </CountryCard>
-          <CountryCard>
-            <FlagContainer />
-
-            <InfoContainer>
-              <h1>Brasil</h1>
-              <InfoWrapper>
-                <div>
-                  <strong>Capital</strong>
-                  <span>Brasília</span>
-                </div>
-                
-                <div>
-                  <strong>Área</strong>
-                  <span>8.516.000 km²</span>
-                </div>
-              </InfoWrapper>
-
-              <InfoWrapper>
-                <div>
-                  <strong>População</strong>
-                  <span>209000000</span>
-                </div>
-
-                <div>
-                  <strong>Top-level-domain</strong>
-                  <span>n/d</span>
-                </div>
-              </InfoWrapper>
-            </InfoContainer>
-          </CountryCard>
+          <CountryCard country={country} />
         </CountriesList>
       </CountriesContainer>
     </Container>
