@@ -1,8 +1,13 @@
 import React from 'react';
-import { Header, CountriesList, CountryCard } from '../../components';
+import { 
+  Header, 
+  CountriesList, 
+  CountryCard, 
+  MainPane 
+} from '../../components';
 import { Country } from '../../models/Country';
 
-import { Container, CountriesContainer } from './styles';
+import { Container } from './styles';
 
 const country: Country =
   {
@@ -21,11 +26,11 @@ function Countries() {
     <Container>
       <Header title="Países" description="Busque pelos países de seu interesse" />
 
-      <CountriesContainer>
+      <MainPane>
         <CountriesList>
           <CountryCard country={country} />
         </CountriesList>
-      </CountriesContainer>
+      </MainPane>
     </Container>
   );
 }
