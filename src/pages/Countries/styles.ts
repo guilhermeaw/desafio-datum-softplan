@@ -42,6 +42,11 @@ export const CountryCard = styled.button`
   background-color: #fff;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 10px rgba(178, 178, 178, 0.25);
+  transition: 0.2s all;
+
+  &:active {
+    transform:scale(1.1);
+  }
 `;
 
 export const FlagContainer = styled.div`
