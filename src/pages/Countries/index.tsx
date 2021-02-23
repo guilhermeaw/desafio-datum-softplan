@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header, CountriesList, CountryCard } from '../../components';
-import { Country } from '../../components/CountryCard';
+import { Country } from '../../models/Country';
 
 import { Container, CountriesContainer } from './styles';
 
@@ -10,6 +10,7 @@ const country: Country =
     area: 8516000,
     population: 209000000,
     capital: 'Brasília',
+    numericCode: '076',
     topLevelDomains: [
       { name: '.br' }
     ]

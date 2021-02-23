@@ -1,18 +1,7 @@
 import React from 'react';
+import { Country } from '../../models/Country';
 
 import { Container, FlagContainer, InfoContainer, InfoWrapper } from './styles';
-
-interface TopLevelDomain {
-  name: string;
-}
-
-export interface Country {
-  name: string;
-  capital: string;
-  area: number;
-  population: number;
-  topLevelDomains: TopLevelDomain[];
-}
 
 type CountryCardProps = {
   country: Country;
