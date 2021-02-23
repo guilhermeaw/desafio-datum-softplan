@@ -19,15 +19,6 @@ export const CountriesContainer = styled.main`
   flex: 1;
 `;
 
-export const CountriesList = styled.div`
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(320px, auto));
-  
-  width: 100%;
-  margin: 1rem 0 2rem 0;
-`;
-
 export const CountryCard = styled.button`
   background-color: #fff;
   border-radius: 0.5rem;
