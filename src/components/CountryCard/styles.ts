@@ -21,29 +21,15 @@ export const FlagContainer = styled.div`
 
 export const InfoContainer = styled.div`
   padding: 1rem;
+  text-align: left;
 
   h1 {
-    line-height: 48px;
-    border-bottom: 1px solid #e1e1e1;
+    font-size: 20px;
   }
-`;
 
-export const InfoWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0.5rem;
-
-  div {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    width: 50%;
-
-    strong {
-      margin-top: 0.5rem;
-      font-size: 13px;
-      line-height: 20px;
-    }
+  span {
+    font-size: 12px;
+    line-height: 28px;
+    display: block;
   }
 `;
