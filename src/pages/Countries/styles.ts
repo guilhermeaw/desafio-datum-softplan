@@ -6,16 +6,6 @@ export const Container = styled.div`
   flex: 1;
 
   height: 100vh;
-
-  header {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 0 auto;
-    padding: 1rem 8rem;
-    box-shadow: 0px 0px 10px rgba(178, 178, 178, 0.25);
-    background-color: #fafafa;
-  }
 `;
 
 export const CountriesContainer = styled.main`
@@ -45,7 +35,7 @@ export const CountryCard = styled.button`
   transition: 0.2s all;
 
   &:active {
-    transform:scale(1.1);
+    transform: scale(1.1);
   }
 `;
 
