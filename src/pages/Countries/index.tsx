@@ -1,7 +1,6 @@
 import React from 'react';
-import Header from '../components/Header';
-import CountriesList from '../components/CountriesList';
-import CountryCard, { Country } from '../components/CountryCard';
+import { Header, CountriesList, CountryCard } from '../../components';
+import { Country } from '../../components/CountryCard';
 
 import { Container, CountriesContainer } from './styles';
 
