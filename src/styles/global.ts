@@ -17,5 +17,11 @@ export default createGlobalStyle`
 
   button {
     cursor: pointer;
+    border: 0;
+  }
+
+  span, p {
+    color: #617480;
+    font-size: 12px;
   }
 `;
