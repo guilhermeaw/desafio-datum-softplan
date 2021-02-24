@@ -9,8 +9,10 @@ import {
   ArrowBackButton, 
   FlagContainer, 
   CountryContainer,
+  CountryDetailsWrapper,
   CountryDetailItem,
-  CountryDetailsWrapper
+  CountryDetailsCardsWrapper,
+  CountryMap
 } from './styles';
 
 type StateType = {
@@ -20,6 +22,12 @@ type StateType = {
 function CountryDetails() {
   const history = useHistory();
   const { state } = useLocation<StateType>();
+
+  const viewport = {
+    latitude: -10,
+    longitude: -55,
+    zoom: 3
+  }
 
   const handleGoBack = () => {
     history.goBack();
@@ -42,54 +50,63 @@ function CountryDetails() {
         <FlagContainer />
         
         <CountryContainer>
-          <h1>{state.country.name}</h1>
-          <p>Descrição do país</p>
-          
           <CountryDetailsWrapper>
-            <CountryDetailItem>
-              <header>
-                <FiMapPin size={40} />
-              </header>
-
-              <div>
-                <h2>{state.country.capital}</h2>
-                <span>Capital</span>
-              </div>
-            </CountryDetailItem>
+            <h1>{state.country.name}</h1>
+            <p>Descrição do país</p>
             
-            <CountryDetailItem>
-              <header>
-                <FiMap size={40} />
-              </header>
+            <CountryDetailsCardsWrapper>
+              <CountryDetailItem>
+                <header>
+                  <FiMapPin size={40} />
+                </header>
 
-              <div>
-                <h2>{state.country.area} km²</h2>
-                <span>Área</span>
-              </div>
-            </CountryDetailItem>
+                <div>
+                  <h2>{state.country.capital}</h2>
+                  <span>Capital</span>
+                </div>
+              </CountryDetailItem>
+              
+              <CountryDetailItem>
+                <header>
+                  <FiMap size={40} />
+                </header>
 
-            <CountryDetailItem>
-              <header>
-                <FiUsers size={40} />
-              </header>
+                <div>
+                  <h2>{state.country.area} km²</h2>
+                  <span>Área</span>
+                </div>
+              </CountryDetailItem>
 
-              <div>
-                <h2>{state.country.population}</h2>
-                <span>População</span>
-              </div>
-            </CountryDetailItem>
+              <CountryDetailItem>
+                <header>
+                  <FiUsers size={40} />
+                </header>
 
-            <CountryDetailItem>
-              <header>
-                <FiGlobe size={40} />
-              </header>
+                <div>
+                  <h2>{state.country.population}</h2>
+                  <span>População</span>
+                </div>
+              </CountryDetailItem>
 
-              <div>
-                <h2>{getDomains}</h2>
-                <span>Domínios</span>
-              </div>
-            </CountryDetailItem>
+              <CountryDetailItem>
+                <header>
+                  <FiGlobe size={40} />
+                </header>
+
+                <div>
+                  <h2>{getDomains}</h2>
+                  <span>Domínios</span>
+                </div>
+              </CountryDetailItem>
+            </CountryDetailsCardsWrapper>
           </CountryDetailsWrapper>
+
+          <CountryMap
+            {...viewport}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            width="100%"
+            height="560px"
+          />
         </CountryContainer>
       </MainPane>
     </Container>

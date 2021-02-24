@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StaticMap } from 'react-map-gl';
 
 export const Container = styled.div`
   display: flex;
@@ -16,8 +17,8 @@ export const ArrowBackButton = styled.button`
 `;
 
 export const FlagContainer = styled.div`
-  height: 10rem;
-  margin: -2rem 0 1rem;
+  min-height: 10rem;
+  margin: -2rem 0 0;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   background: url("https://restcountries.eu/data/bra.svg") no-repeat center;
@@ -25,11 +26,19 @@ export const FlagContainer = styled.div`
 `;
 
 export const CountryContainer = styled.div`
-  margin-top: 2rem;
+  margin: 2rem 0 1rem;
+  height: auto;
 
   h1 {
     font-size: 48px;
   }
+`;
+
+export const CountryDetailsWrapper = styled.div`
+  background-color: #e4e4e4;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding: 1rem 2rem;
 `;
 
 export const CountryDetailItem = styled.div`
@@ -75,6 +84,12 @@ export const CountryDetailItem = styled.div`
   }
 `;
 
-export const CountryDetailsWrapper = styled.div`
+export const CountryDetailsCardsWrapper = styled.div`
   display: flex;
+`;
+
+export const CountryMap = styled(StaticMap)`
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top: 1px solid #fff;
 `;
