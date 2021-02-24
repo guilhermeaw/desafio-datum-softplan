@@ -20,6 +20,10 @@ export default createGlobalStyle`
     border: 0;
   }
 
+  input {
+    border: 1px solid #DCE2E6;
+  }
+
   span, p {
     color: #617480;
     font-size: 12px;

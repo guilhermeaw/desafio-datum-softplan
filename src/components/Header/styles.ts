@@ -9,4 +9,8 @@ export const Container = styled.header`
   padding: 1rem 8rem;
   box-shadow: 0px 0px 10px rgba(178, 178, 178, 0.25);
   background-color: #fafafa;
+
+  @media (max-width: 768px) {
+    padding: 1rem 4rem;
+  }
 `;

@@ -35,7 +35,7 @@ export const CountryContainer = styled.div`
 `;
 
 export const CountryDetailsWrapper = styled.div`
-  background-color: #e4e4e4;
+  background-color: #e8e8e8;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   padding: 1rem 2rem;
@@ -85,7 +85,9 @@ export const CountryDetailItem = styled.div`
 `;
 
 export const CountryDetailsCardsWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 180px));
 `;
 
 export const CountryMap = styled(StaticMap)`

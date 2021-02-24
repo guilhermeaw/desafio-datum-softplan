@@ -7,7 +7,7 @@ import {
 } from '../../components';
 import { Country } from '../../models/Country';
 
-import { Container } from './styles';
+import { Container, SearchField } from './styles';
 
 const country: Country =
   {
@@ -27,6 +27,13 @@ function Countries() {
       <Header title="Países" description="Busque pelos países de seu interesse" />
 
       <MainPane>
+        <SearchField>
+          <input type="text"/>
+          <button type="button">
+            Buscar
+          </button>
+        </SearchField>
+        
         <CountriesList>
           <CountryCard country={country} />
         </CountriesList>

@@ -10,4 +10,8 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
   flex: 1;
+
+  @media (max-width: 768px) {
+    padding: 2rem 4rem;
+  }
 `;
