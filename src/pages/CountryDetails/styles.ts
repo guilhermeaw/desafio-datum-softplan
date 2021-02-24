@@ -49,12 +49,8 @@ export const CountryDetailItem = styled.div`
   background-color: #fff;
   border-radius: 8px;
   border: 1px solid #DCE2E6;
-  width: 180px;
+  min-width: 200px;
   transition: 0.3s all;
-
-  & + & {
-    margin-left: 1rem;
-  }
 
   &:hover {
     transform: scale(1.1);
@@ -86,8 +82,12 @@ export const CountryDetailItem = styled.div`
 
 export const CountryDetailsCardsWrapper = styled.div`
   display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 180px));
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, auto));
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const CountryMap = styled(StaticMap)`
