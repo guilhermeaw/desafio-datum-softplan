@@ -20,7 +20,7 @@ function CountryCard({ country }: CountryCardProps) {
   
   return (
     <Container onClick={handleNavigateToCountry}>
-        <FlagContainer />
+        <FlagContainer imageUrl={country.flag.svgFile} />
 
         <InfoContainer>
           <h1>{country.name}</h1>

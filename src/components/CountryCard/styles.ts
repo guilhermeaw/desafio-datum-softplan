@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+type FlagContainerProps = {
+  imageUrl: string;
+}
+
 export const Container = styled.button`
   background-color: #fff;
   border-radius: 0.5rem;
@@ -11,11 +15,11 @@ export const Container = styled.button`
   }
 `;
 
-export const FlagContainer = styled.div`
+export const FlagContainer = styled.div<FlagContainerProps>`
   height: 160px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  background: url("https://restcountries.eu/data/bra.svg") no-repeat center;
+  background: url(${props => props.imageUrl}) no-repeat center;
   background-size: cover;
 `;
 

@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import { Container } from './styles';
 
 type CountriesListProps = {
-  children: ReactNode
+  children?: ReactNode
 }
 
 function CountriesList({ children }: CountriesListProps) {

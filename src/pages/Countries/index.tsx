@@ -1,27 +1,24 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
+
 import { 
   Header, 
   CountriesList, 
   CountryCard, 
   MainPane 
 } from '../../components';
-import { Country } from '../../models/Country';
+import { Country as CountryModel } from '../../models/Country';
+import { GET_COUNTRIES } from '../../queries/queries';
 
 import { Container, SearchField } from './styles';
 
-const country: Country =
-  {
-    name: 'Brasil',
-    area: 8516000,
-    population: 209000000,
-    capital: 'Brasília',
-    numericCode: '076',
-    topLevelDomains: [
-      { name: '.br' }
-    ]
-  };
+type QueryType = {
+  Country: CountryModel[];
+}
 
 function Countries() {
+  const { loading, error, data } = useQuery<QueryType>(GET_COUNTRIES);
+
   return (
     <Container>
       <Header title="Países" description="Busque pelos países de seu interesse" />
@@ -35,7 +32,12 @@ function Countries() {
         </SearchField>
         
         <CountriesList>
-          <CountryCard country={country} />
+          {loading && <p>Carregando...</p>}
+          {error && <p>{error.name}: {error.message}</p>}
+          {console.log(data)}
+          {data?.Country.map(country => (
+            <CountryCard key={country.numericCode} country={country} />
+          )) }
         </CountriesList>
       </MainPane>
     </Container>

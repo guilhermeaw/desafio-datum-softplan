@@ -10,6 +10,7 @@ import {
   FlagContainer, 
   CountryContainer,
   CountryDetailsWrapper,
+  CountryDetailsWrapperHeader,
   CountryDetailItem,
   CountryDetailsCardsWrapper,
   CountryMap
@@ -33,9 +34,9 @@ function CountryDetails() {
     history.goBack();
   }
 
-  const getDomains = useMemo(() => {
+  const domains = useMemo(() => {
     return state !== undefined 
-      && state.country.topLevelDomains.map(domain => domain.name).join(',')
+      && state.country.topLevelDomains.map(domain => domain.name).join(' ')
   }, [state])
 
   return state !== undefined ? (
@@ -47,12 +48,18 @@ function CountryDetails() {
       </Header>
       
       <MainPane>
-        <FlagContainer />
+        <FlagContainer imageUrl={state.country.flag.svgFile} />
         
         <CountryContainer>
           <CountryDetailsWrapper>
-            <h1>{state.country.name}</h1>
-            <p>Descrição do país</p>
+            <CountryDetailsWrapperHeader style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div>
+                <h1>{state.country.name}</h1>
+                <p>Descrição do país</p>
+              </div>
+
+              <img src={state.country.flag.svgFile} alt="country-flag"/>
+            </CountryDetailsWrapperHeader>
             
             <CountryDetailsCardsWrapper>
               <CountryDetailItem>
@@ -94,7 +101,7 @@ function CountryDetails() {
                 </header>
 
                 <div>
-                  <h2>{getDomains}</h2>
+                  <h2>{domains}</h2>
                   <span>Domínios</span>
                 </div>
               </CountryDetailItem>

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { StaticMap } from 'react-map-gl';
 
+type FlagContainerProps = {
+  imageUrl: string;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,12 +20,12 @@ export const ArrowBackButton = styled.button`
   width: 40px;
 `;
 
-export const FlagContainer = styled.div`
-  min-height: 10rem;
+export const FlagContainer = styled.div<FlagContainerProps>`
+  min-height: 16rem;
   margin: -2rem 0 0;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-  background: url("https://restcountries.eu/data/bra.svg") no-repeat center;
+  background: url(${props => props.imageUrl}) no-repeat center;
   background-size: cover;
 `;
 
@@ -39,6 +43,16 @@ export const CountryDetailsWrapper = styled.div`
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   padding: 1rem 2rem;
+`;
+
+export const CountryDetailsWrapperHeader = styled.div`
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 64px;
+    border-radius: 4px;
+  }
 `;
 
 export const CountryDetailItem = styled.div`
