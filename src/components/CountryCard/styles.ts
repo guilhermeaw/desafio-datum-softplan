@@ -15,12 +15,15 @@ export const Container = styled.button`
   }
 `;
 
-export const FlagContainer = styled.div<FlagContainerProps>`
-  height: 160px;
+export const FlagContainer = styled.div.attrs<FlagContainerProps>(props => ({
+  style: {
+    background: `url(${props.imageUrl}) no-repeat center`,
+    backgroundSize: 'cover'
+  },
+}))<FlagContainerProps>`
+  height: 180px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  background: url(${props => props.imageUrl}) no-repeat center;
-  background-size: cover;
 `;
 
 export const InfoContainer = styled.div`

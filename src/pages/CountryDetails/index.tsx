@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import { FiArrowLeft, FiGlobe, FiMap, FiMapPin, FiUsers } from 'react-icons/fi';
+import { Marker } from 'react-map-gl';
 import { MainPane, Header } from '../../components';
 import { Country } from '../../models/Country';
 
@@ -23,23 +24,24 @@ type StateType = {
 function CountryDetails() {
   const history = useHistory();
   const { state } = useLocation<StateType>();
-
-  const viewport = {
-    latitude: -10,
-    longitude: -55,
-    zoom: 3
-  }
+  const [viewport, setViewport] = useState(state !== undefined ? {
+    latitude: state.country.location.latitude,
+    longitude: state.country.location.longitude,
+    zoom: 4
+  } : {});
 
   const handleGoBack = () => {
     history.goBack();
   }
-
+  
   const domains = useMemo(() => {
     return state !== undefined 
       && state.country.topLevelDomains.map(domain => domain.name).join(' ')
   }, [state])
 
-  return state !== undefined ? (
+  if(state === undefined) return <Redirect to="/" />
+
+  return (
     <Container>
       <Header title="Detalhes" description="Detalhes do país selecionado">
         <ArrowBackButton onClick={handleGoBack}>
@@ -111,14 +113,20 @@ function CountryDetails() {
           <CountryMap
             {...viewport}
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+            onViewportChange={setViewport}
             width="100%"
             height="560px"
-          />
+          >
+            <Marker 
+              latitude={state.country.location.latitude}
+              longitude={state.country.location.longitude}
+            >
+              <FiMapPin fill="red" size={24} />
+            </Marker>
+          </CountryMap>
         </CountryContainer>
       </MainPane>
     </Container>
-  ) : (
-    <Redirect to="/" />
   );
 }
 

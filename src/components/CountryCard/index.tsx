@@ -24,7 +24,7 @@ function CountryCard({ country }: CountryCardProps) {
 
         <InfoContainer>
           <h1>{country.name}</h1>
-          <span>{country.capital}</span>
+          <span>{!!country.capital ? country.capital : 'n/d'}</span>
         </InfoContainer>
       </Container>
   );

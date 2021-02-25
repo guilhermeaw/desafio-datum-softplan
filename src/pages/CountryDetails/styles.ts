@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StaticMap } from 'react-map-gl';
+import MapGL from 'react-map-gl';
 
 type FlagContainerProps = {
   imageUrl: string;
@@ -53,6 +53,16 @@ export const CountryDetailsWrapperHeader = styled.div`
     height: 64px;
     border-radius: 4px;
   }
+
+  @media (max-width: 650px) {
+    flex-direction: column;
+
+    img {
+      margin: 1rem 0;
+      width: 80%;
+      height: auto;
+    }
+  }
 `;
 
 export const CountryDetailItem = styled.div`
@@ -104,7 +114,7 @@ export const CountryDetailsCardsWrapper = styled.div`
   }
 `;
 
-export const CountryMap = styled(StaticMap)`
+export const CountryMap = styled(MapGL)`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   border-top: 1px solid #fff;

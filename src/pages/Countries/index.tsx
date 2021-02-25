@@ -34,7 +34,6 @@ function Countries() {
         <CountriesList>
           {loading && <p>Carregando...</p>}
           {error && <p>{error.name}: {error.message}</p>}
-          {console.log(data)}
           {data?.Country.map(country => (
             <CountryCard key={country.numericCode} country={country} />
           )) }
