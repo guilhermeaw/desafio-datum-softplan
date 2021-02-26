@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from 'react';
-import { Redirect, useHistory, useLocation } from 'react-router-dom';
-import { FiArrowLeft, FiGlobe, FiMap, FiMapPin, FiUsers } from 'react-icons/fi';
+import { Redirect, useLocation } from 'react-router-dom';
+import { FiEdit, FiGlobe, FiMap, FiMapPin, FiUsers } from 'react-icons/fi';
 import { Marker } from 'react-map-gl';
 import { MainPane, Header } from '../../components';
 import { Country } from '../../models/Country';
 
 import { 
   Container, 
-  ArrowBackButton, 
+  EditCountryButton,
   FlagContainer, 
   CountryContainer,
   CountryDetailsWrapper,
@@ -22,17 +22,12 @@ type StateType = {
 }
 
 function CountryDetails() {
-  const history = useHistory();
   const { state } = useLocation<StateType>();
   const [viewport, setViewport] = useState(state !== undefined ? {
     latitude: state.country.location.latitude,
     longitude: state.country.location.longitude,
     zoom: 4
   } : {});
-
-  const handleGoBack = () => {
-    history.goBack();
-  }
   
   const domains = useMemo(() => {
     return state !== undefined 
@@ -43,10 +38,11 @@ function CountryDetails() {
 
   return (
     <Container>
-      <Header title="Detalhes" description="Detalhes do país selecionado">
-        <ArrowBackButton onClick={handleGoBack}>
-          <FiArrowLeft size={16} />
-        </ArrowBackButton>
+      <Header showNavigationButton title="Detalhes" description="Detalhes do país selecionado">
+        <EditCountryButton>
+          <FiEdit size={16} style={{ marginRight: 8 }} />
+          Editar país
+        </EditCountryButton>
       </Header>
       
       <MainPane>

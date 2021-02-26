@@ -13,11 +13,13 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
-export const ArrowBackButton = styled.button`
-  border-radius: 4px;
+export const EditCountryButton = styled.button`
+  display: flex;
+  align-items: flex-end;
+
+  border-radius: 8px;
   border: 1px solid #DCE2E6;
-  height: 40px;
-  width: 40px;
+  padding: 16px;
 `;
 
 export const FlagContainer = styled.div<FlagContainerProps>`

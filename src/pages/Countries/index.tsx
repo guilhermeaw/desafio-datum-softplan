@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { 
@@ -17,7 +17,11 @@ type QueryType = {
 }
 
 function Countries() {
-  const { loading, error, data } = useQuery<QueryType>(GET_COUNTRIES);
+  const [inputValue, setInputValue] = useState('');
+
+  const { loading, error, data } = useQuery<QueryType>(GET_COUNTRIES, {
+    variables: { searchQuery: inputValue }
+  });
 
   return (
     <Container>
@@ -25,7 +29,13 @@ function Countries() {
 
       <MainPane>
         <SearchField>
-          <input type="text"/>
+          <input 
+            value={inputValue} 
+            onChange={(e) => setInputValue(e.target.value)}
+            type="text"
+            placeholder="Buscar..."
+          />
+
           <button type="button">
             Buscar
           </button>

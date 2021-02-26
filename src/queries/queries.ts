@@ -1,8 +1,10 @@
 import { gql } from "@apollo/client";
 
 const GET_COUNTRIES = gql`
-  query GetCountries {
-    Country {
+  query GetCountries($searchQuery: String!) {
+    Country(filter: {
+      name_contains: $searchQuery
+    }) {
       name
       area
       population
