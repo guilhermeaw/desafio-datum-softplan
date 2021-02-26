@@ -24,7 +24,7 @@ export default createGlobalStyle`
     border: 1px solid #DCE2E6;
   }
 
-  span, p {
+  span, p, label {
     color: #617480;
     font-size: 12px;
   }

@@ -5,6 +5,7 @@ const GET_COUNTRIES = gql`
     Country(filter: {
       name_contains: $searchQuery
     }) {
+      _id
       name
       area
       population
@@ -13,7 +14,6 @@ const GET_COUNTRIES = gql`
         latitude
         longitude
       }
-      numericCode
       topLevelDomains {
         name
       }
@@ -24,4 +24,26 @@ const GET_COUNTRIES = gql`
   }
 `;
 
-export { GET_COUNTRIES };
+const GET_COUNTRY = gql`
+  query GetCountry($id: String!) {
+    Country(_id: $id) {
+      _id
+      name
+      area
+      population
+      capital
+      location {
+        latitude
+        longitude
+      }
+      topLevelDomains {
+        name
+      }
+      flag {
+        svgFile
+      }
+    }
+  }
+`;
+
+export { GET_COUNTRIES, GET_COUNTRY };

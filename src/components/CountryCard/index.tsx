@@ -13,7 +13,7 @@ function CountryCard({ country }: CountryCardProps) {
   
   const handleNavigateToCountry = () => {
     history.push({
-      pathname: `/countries/${country.numericCode}`,
+      pathname: `/countries/${country._id}`,
       state: { country }
     });
   }

@@ -17,7 +17,7 @@ export interface Country {
   population: number;
   capital: string;
   location: Location;
-  numericCode: string;
+  _id: string;
   topLevelDomains: TopLevelDomain[];
   flag: Flag;
 }

@@ -45,7 +45,7 @@ function Countries() {
           {loading && <p>Carregando...</p>}
           {error && <p>{error.name}: {error.message}</p>}
           {data?.Country.map(country => (
-            <CountryCard key={country.numericCode} country={country} />
+            <CountryCard key={country._id} country={country} />
           )) }
         </CountriesList>
       </MainPane>
