@@ -1,37 +1,35 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { RouteComponentProps } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { Header, MainPane } from '../../components';
 import { Country as CountryModel } from '../../models/Country';
-import { GET_COUNTRY } from '../../queries/queries';
 
 import { Container, EditorPane, FlagContainer } from './styles';
-
-type QueryType = {
-  Country: CountryModel[];
-}
+import { useCountry } from '../../hooks/countries';
 
 type RouteProps = {
   id: string;
 }
 
 function CountryEdit({match}: RouteComponentProps<RouteProps>) {
-  const { loading, error, data } = useQuery<QueryType>(GET_COUNTRY, {
-    variables: { id: match.params.id }
-  });
+  const { loading, error, getCountry, updateCountry } = useCountry();
+
   const [country, setCountry] = useState({} as CountryModel | undefined);
   const [areaInputValue, setAreaInputValue] = useState('');
   const [populationInputValue, setPopulationInputValue] = useState('');
 
-  useEffect(() => {
-    const countryValue = data?.Country[0];
+  const history = useHistory();
 
-    if (countryValue !== undefined) {
-      setCountry(countryValue);
-      setAreaInputValue(countryValue.area.toString());
-      setPopulationInputValue(countryValue.population.toString());
+  useEffect(() => {
+    const findCountry = getCountry(match.params.id);
+
+    setCountry(findCountry);
+    
+    if (findCountry !== undefined) {
+      setCountry(findCountry);
+      setAreaInputValue(findCountry.area.toString());
+      setPopulationInputValue(findCountry.population.toString());
     }
-  }, [data]);
+  }, [getCountry, match.params.id]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,14 +38,18 @@ function CountryEdit({match}: RouteComponentProps<RouteProps>) {
       ...country, 
       area: Number(areaInputValue), 
       population: Number(populationInputValue)
-    }
+    } as CountryModel;
+
+    updateCountry(newCountry);
+
+    history.goBack();
   };
 
   return (
     <Container>
       <Header 
         showNavigationButton 
-        title="Editar país" 
+        title="Editor de país" 
         description="Edite as informações do país selecionado" 
       />
 

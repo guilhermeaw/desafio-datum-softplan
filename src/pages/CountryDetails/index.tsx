@@ -1,11 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { RouteComponentProps, useHistory } from 'react-router-dom';
 import { FiEdit, FiGlobe, FiMap, FiMapPin, FiUsers } from 'react-icons/fi';
-import { useQuery } from '@apollo/client';
 import { Marker } from 'react-map-gl';
 import { MainPane, Header } from '../../components';
 import { Country as CountryModel } from '../../models/Country';
-import { GET_COUNTRY } from '../../queries/queries';
 
 import { 
   Container, 
@@ -18,44 +16,36 @@ import {
   CountryDetailsCardsWrapper,
   CountryMap
 } from './styles';
+import { useCountry } from '../../hooks/countries';
 
 type RouteProps = {
   id: string;
 }
 
-type QueryType = {
-  Country: CountryModel[];
-}
-
 function CountryDetails({ match }: RouteComponentProps<RouteProps>) {
+  const [country, setCountry] = useState({} as CountryModel);
+  const [viewport, setViewport] = useState({});
+  
   const history = useHistory();
-  const { loading, error, data } = useQuery<QueryType>(GET_COUNTRY, {
-    variables: { id: match.params.id }
-  });
+  const { loading, error, getCountry } = useCountry();
 
-  const [viewport, setViewport] = useState(data?.Country[0] !== undefined ? {
-    latitude: data.Country[0].location.latitude,
-    longitude: data.Country[0].location.longitude,
-    zoom: 4
-  } : {});
+  useEffect(() => {
+    const findCountry = getCountry(match.params.id);
+
+    if (findCountry !== undefined) {
+      setCountry(findCountry);
+      setViewport({
+        latitude: findCountry.location.latitude,
+        longitude: findCountry.location.longitude,
+        zoom: 4
+      });
+    }
+  }, [getCountry, match.params.id]);
 
   const handleEditCountry = useCallback(() => {
-    console.log(data?.Country[0])
-    
-    if (data?.Country[0] !== undefined) {
-      const country = data.Country[0];
-
-      history.push(`/countries/${country._id}/edit`);
-    }
-  }, [history, data]);
+    country && history.push(`/countries/${country._id}/edit`);
+  }, [history, country]);
   
-  const domains = useMemo(() => {
-    return data?.Country[0] !== undefined
-      && data.Country[0].topLevelDomains.map(domain => domain.name).join(' ')
-  }, [data])
-
-  const country = data?.Country[0];
-
   return (
     <Container>
       <Header showNavigationButton title="Detalhes" description="Detalhes do país selecionado">
@@ -68,7 +58,8 @@ function CountryDetails({ match }: RouteComponentProps<RouteProps>) {
       <MainPane>
         {loading && <p>Carregando...</p>}
         {error && <p>{error.name}: {error.message}</p>}
-        {country && (
+        {country && country.flag !== undefined && country.location !== undefined 
+          && country.topLevelDomains !== undefined && (
           <>
             <FlagContainer imageUrl={country.flag.svgFile} />
           
@@ -123,7 +114,7 @@ function CountryDetails({ match }: RouteComponentProps<RouteProps>) {
                     </header>
     
                     <div>
-                      <h2>{domains}</h2>
+                      <h2>{country.topLevelDomains.map(domain => domain.name).join(' ')}</h2>
                       <span>Domínios</span>
                     </div>
                   </CountryDetailItem>

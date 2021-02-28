@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
 
 import { 
   Header, 
@@ -7,21 +6,14 @@ import {
   CountryCard, 
   MainPane 
 } from '../../components';
-import { Country as CountryModel } from '../../models/Country';
-import { GET_COUNTRIES } from '../../queries/queries';
 
 import { Container, SearchField } from './styles';
-
-type QueryType = {
-  Country: CountryModel[];
-}
+import { useCountry } from '../../hooks/countries';
 
 function Countries() {
   const [inputValue, setInputValue] = useState('');
 
-  const { loading, error, data } = useQuery<QueryType>(GET_COUNTRIES, {
-    variables: { searchQuery: inputValue }
-  });
+  const { loading, error, countries } = useCountry();
 
   return (
     <Container>
@@ -44,7 +36,7 @@ function Countries() {
         <CountriesList>
           {loading && <p>Carregando...</p>}
           {error && <p>{error.name}: {error.message}</p>}
-          {data?.Country.map(country => (
+          {countries.map(country => (
             <CountryCard key={country._id} country={country} />
           )) }
         </CountriesList>
